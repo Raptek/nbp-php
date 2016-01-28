@@ -12,6 +12,8 @@ class NbpFileLoader
     public function load($url)
     {
         $txt = file_get_contents($url);
+        $txt = iconv('ISO-8859-2', 'UTF-8//TRANSLIT', $txt);
+        $txt = str_replace('ISO-8859-2', 'UTF-8', $txt);
         $Xml = new \SimpleXMLElement($txt);
         /** @var NbpRateTuple[] $rates */
         $rates = [];
